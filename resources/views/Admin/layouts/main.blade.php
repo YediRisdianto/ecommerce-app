@@ -17,7 +17,8 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
-    
+    <link href="{{ asset('/assets/libs/dropzone/dist/min/dropzone.min.css') }}" rel="stylesheet">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
 
@@ -61,7 +62,7 @@
 
     </div>
 
-
+    <script src="{{ asset('assets/libs/flatpickr/dist/flatpickr.min.js') }}"></script>
     <!-- Libs JS -->
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -69,6 +70,10 @@
 
     <!-- Theme JS -->
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/quill/dist/quill.min.js') }}"></script>
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/chart.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/editor.js') }}"></script>
+    <script src="{{ asset('assets/libs/dropzone/dist/min/dropzone.min.js') }}"></script>
+
 </body>
