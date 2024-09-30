@@ -98,7 +98,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
                 <div class="border-top d-md-flex justify-content-between align-items-center  px-6 py-6">

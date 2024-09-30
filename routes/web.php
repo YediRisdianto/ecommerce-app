@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminChildCategoryController;
 use App\Http\Controllers\AdminParentCategoryController;
+use App\Http\Controllers\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,20 +24,21 @@ Route::get('/admin/dashboard', function() {
     return view('Admin.dashboard');
 });
 
-Route::get('/admin/products', function() {
-    return view('Admin.products.index');
-});
+// Route::get('/admin/products', function() {
+//     return view('Admin.products.index');
+// });
 
-Route::get('/admin/products/add', function() {
-    return view('Admin.products.add');
-});
+// Route::get('/admin/products/add', function() {
+//     return view('Admin.products.create');
+// });
 
-Route::get('/admin/products/edit', function() {
-    return view('Admin.products.edit');
-});
+// Route::get('/admin/products/edit', function() {
+//     return view('Admin.products.edit');
+// });
 
 Route::resource('/admin/parent-categories', AdminParentCategoryController::class);
 Route::resource('/admin/child-categories', AdminChildCategoryController::class);
+Route::resource('/admin/products', AdminProductController::class);
 
 // Route::get('/admin/parent-categories', function() {
 //     return view('Admin.categories.parent.index');
