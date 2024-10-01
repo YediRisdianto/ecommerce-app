@@ -85,11 +85,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/customers">
+                    <a class="nav-link" href="{{ route('users.index') }}">
                         <div class="d-flex align-items-center">
                             <span class="nav-link-icon">
                                 <i class="bi bi-people"></i></span>
-                            <span class="nav-link-text">Customers</span>
+                            <span class="nav-link-text">Users</span>
                         </div>
                     </a>
                 </li>
