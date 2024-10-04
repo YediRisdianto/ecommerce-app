@@ -5,6 +5,9 @@ use App\Http\Controllers\AdminChildCategoryController;
 use App\Http\Controllers\AdminParentCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
+use App\Models\ChildCategory;
+use App\Models\Product;
+use App\Models\ParentCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +21,8 @@ use App\Http\Controllers\AdminUserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $products = Product::with('ChildCategory')->where('status', 'Active')->get();
+    return view('welcome', compact('products'));
 });
 
 Route::get('/admin/dashboard', function() {
