@@ -2,12 +2,39 @@
 
 @section('content')
 
+<!-- Category Section Start-->
+<section class="mb-lg-10 mt-lg-14 my-8">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-6">
+                <h3 class="mb-0">Categories</h3>
+            </div>
+        </div>
+        <div class="category-slider">
+            @foreach($parentCategories as $parentCategory)
+            <div class="item">
+                <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
+                    <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                            <img src="{{ asset('storage/' . $parentCategory->image) }}"
+                                alt="{{ $parentCategory->name }}" class="mb-3 img-fluid category-image">
+                            <div class="text-truncate">{{ $parentCategory->name }}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+<!-- Category Section End-->
+
 <!-- Popular Products Start-->
 <section class="my-lg-14 my-8">
     <div class="container">
         <div class="row">
             <div class="col-12 mb-6">
-                <h3 class="mb-0">Popular Products</h3>
+                <h3 class="mb-0">Products</h3>
             </div>
         </div>
 
@@ -17,15 +44,15 @@
                 <div class="card card-product">
                     <div class="card-body">
 
-                        <div class="text-center position-relative ">
+                        <div class="text-center position-relative">
                             @if($product->sale_price)
-                            <div class=" position-absolute top-0 start-0">
+                            <div class="position-absolute top-0 start-0">
                                 <span class="badge bg-danger">Sale</span>
                             </div>
                             @endif
                             <a href="#!">
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                    class="mb-3 img-fluid">
+                                    class="mb-3 img-fluid product-image">
                             </a>
 
                             <div class="card-product-action">
@@ -60,7 +87,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
-                                <span class="text-dark">${{ $product->sale_price ?? $product->regular_price }}</span>
+                                <span class="text-dark">Rp{{ $product->sale_price ?? $product->regular_price }}</span>
                                 @if($product->sale_price)
                                 <span class="text-decoration-line-through text-muted">${{ $product->regular_price
                                     }}</span>
@@ -82,7 +109,30 @@
             </div>
             @endforeach
         </div>
+
+        <div class="d-flex justify-content-center mt-5">
+            {{ $products->links() }}
+        </div>
     </div>
 </section>
+<!-- Popular Products End-->
+
+<style>
+
+.category-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+</style>
 
 @endsection

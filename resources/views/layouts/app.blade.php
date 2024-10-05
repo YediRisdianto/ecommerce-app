@@ -60,8 +60,6 @@
 
         @include('partials.jumbotron')
 
-        @include('partials.category-section')
-
         @yield('content')
 
         @include('partials.best-sell')

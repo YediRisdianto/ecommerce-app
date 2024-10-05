@@ -21,9 +21,18 @@ use App\Models\ParentCategory;
 */
 
 Route::get('/', function () {
-    $products = Product::with('ChildCategory')->where('status', 'Active')->get();
-    return view('welcome', compact('products'));
+
+    $products = Product::with('childCategory.parentCategory')
+        ->where('status', 'Active')
+        ->paginate(10);
+
+    $parentCategories = ParentCategory::with('childCategory')
+        ->get();
+
+    return view('welcome', compact('products', 'parentCategories'));
 });
+
+
 
 Route::get('/admin/dashboard', function() {
     return view('Admin.dashboard');
@@ -33,4 +42,3 @@ Route::resource('/admin/parent-categories', AdminParentCategoryController::class
 Route::resource('/admin/child-categories', AdminChildCategoryController::class);
 Route::resource('/admin/products', AdminProductController::class);
 Route::resource('/admin/users', AdminUserController::class);
-

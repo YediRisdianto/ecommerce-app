@@ -34,7 +34,7 @@ class AdminProductController extends Controller
             'weight'            => 'required|integer|min:0',
             'regular_price'     => 'required|numeric|min:0',
             'sale_price'        => 'nullable|numeric|min:0',
-            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'status'            => 'required|in:Active,Inactive',
         ]);
 
@@ -72,7 +72,7 @@ class AdminProductController extends Controller
             'weight'            => 'required|integer|min:0',
             'regular_price'     => 'required|integer|min:0',
             'sale_price'        => 'nullable|integer|min:0',
-            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'status'            => 'required|in:Active,Inactive',
         ]);
 
