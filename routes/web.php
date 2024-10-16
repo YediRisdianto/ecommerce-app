@@ -32,8 +32,6 @@ Route::get('/', function () {
     return view('welcome', compact('products', 'parentCategories'));
 });
 
-
-
 Route::get('/admin/dashboard', function() {
     return view('Admin.dashboard');
 });

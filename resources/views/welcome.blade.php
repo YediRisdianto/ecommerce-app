@@ -56,15 +56,22 @@
                             </a>
 
                             <div class="card-product-action">
-                                <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                    data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip"
-                                        data-bs-html="true" title="Quick View"></i></a>
+                                <a href="javascript:void(0);" class="btn-action" data-bs-toggle="modal"
+                                    data-bs-target="#quickViewModal"
+                                    data-product-category="{{ $product->childCategory->name }}"
+                                    data-product-name="{{ $product->name }}"
+                                    data-product-image="{{ asset('storage/' . $product->image) }}"
+                                    data-product-price="{{ $product->sale_price ?? $product->regular_price }}"
+                                    data-product-regular-price="{{ $product->regular_price }}"
+                                    data-product-sale-price="{{ $product->sale_price }}">
+                                    <i class="bi bi-eye" data-bs-toggle="tooltip" title="Quick View"></i>
+                                </a>
+
                                 <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
                                     title="Wishlist"><i class="bi bi-heart"></i></a>
                                 <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
                                     title="Compare"><i class="bi bi-arrow-left-right"></i></a>
                             </div>
-
                         </div>
                         <div class="text-small mb-1">
                             <a href="#!" class="text-decoration-none text-muted">
@@ -72,11 +79,12 @@
                             </a>
                         </div>
                         <h2 class="fs-6">
-                            <a href="pages/shop-single.html" class="text-inherit text-decoration-none">{{ $product->name
-                                }}</a>
+                            <a href="pages/shop-single.html" class="text-inherit text-decoration-none">{{
+                                $product->name}}</a>
                         </h2>
                         <div>
                             <small class="text-warning">
+                                <!-- Static Stars since no rating field exists -->
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
@@ -87,10 +95,11 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
-                                <span class="text-dark">Rp{{ $product->sale_price ?? $product->regular_price }}</span>
+                                <span class="text-dark">Rp{{ number_format($product->sale_price ??
+                                    $product->regular_price, 2, ',', '.') }}</span>
                                 @if($product->sale_price)
-                                <span class="text-decoration-line-through text-muted">${{ $product->regular_price
-                                    }}</span>
+                                <span class="text-decoration-line-through text-muted">Rp{{
+                                    number_format($product->regular_price, 2, ',', '.') }}</span>
                                 @endif
                             </div>
                             <div>
@@ -118,21 +127,57 @@
 <!-- Popular Products End-->
 
 <style>
+    .category-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 
-.category-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.product-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
+    .product-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quickViewModal = document.getElementById('quickViewModal');
+
+        quickViewModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+
+            const productImage = button.getAttribute('data-product-image');
+            const productCategory = button.getAttribute('data-product-category');
+            const productName = button.getAttribute('data-product-name');
+            const productPrice = button.getAttribute('data-product-price');
+            const regularPrice = button.getAttribute('data-product-regular-price');
+            const salePrice = button.getAttribute('data-product-sale-price');
+
+            const zoomDiv = quickViewModal.querySelector('.zoom');
+            const productImgTag = quickViewModal.querySelector('.modal-body img');
+
+            zoomDiv.style.backgroundImage = `url('${productImage}')`;
+
+            productImgTag.src = productImage;
+
+            quickViewModal.querySelector('.product-category').textContent = productCategory;
+            quickViewModal.querySelector('.product-name').textContent = productName;
+            quickViewModal.querySelector('.product-price').textContent = 'Rp' + new Intl.NumberFormat('id-ID').format(productPrice);
+
+            const regularPriceElem = quickViewModal.querySelector('.product-regular-price');
+            if (salePrice) {
+                regularPriceElem.textContent = 'Rp' + new Intl.NumberFormat('id-ID').format(regularPrice);
+                regularPriceElem.style.display = 'inline';
+            } else {
+                regularPriceElem.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+
 
 @endsection
