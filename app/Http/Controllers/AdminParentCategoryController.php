@@ -11,12 +11,12 @@ class AdminParentCategoryController extends Controller
     public function index()
     {
         $parentCategories = ParentCategory::get();
-        return view('Admin.categories.parent.index', compact('parentCategories'));
+        return view('admin.categories.parent.index', compact('parentCategories'));
     }
 
     public function create()
     {
-        return view('Admin.categories.parent.add');
+        return view('admin.categories.parent.add');
     }
 
     public function store(Request $request)
@@ -42,7 +42,7 @@ class AdminParentCategoryController extends Controller
     {
         $category = ParentCategory::findOrFail($id);
 
-        return view('Admin.categories.parent.edit', compact('category'));
+        return view('admin.categories.parent.edit', compact('category'));
     }
 
     public function update(Request $request, string $id)

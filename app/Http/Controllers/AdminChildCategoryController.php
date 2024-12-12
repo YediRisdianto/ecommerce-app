@@ -12,13 +12,13 @@ class AdminChildCategoryController extends Controller
     public function index()
     {
         $childCategories = ChildCategory::with('parentCategory')->get();
-        return view('Admin.categories.child.index', compact('childCategories'));
+        return view('admin.categories.child.index', compact('childCategories'));
     }
 
     public function create()
     {
         $parentCategories = ParentCategory::all();
-        return view('Admin.categories.child.add', compact('parentCategories'));
+        return view('admin.categories.child.add', compact('parentCategories'));
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class AdminChildCategoryController extends Controller
     {
         $childCategory = ChildCategory::findOrFail($id);
         $parentCategories = ParentCategory::all();
-        return view('Admin.categories.child.edit', compact('childCategory', 'parentCategories'));
+        return view('admin.categories.child.edit', compact('childCategory', 'parentCategories'));
     }
 
     public function update(Request $request, $id)

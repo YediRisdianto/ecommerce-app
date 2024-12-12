@@ -40,13 +40,13 @@
 
     <div class="wrapper">
 
-        @include('Admin.partials.navbar')
+        @include('admin.partials.navbar')
 
         <div class="main-wrapper">
 
-            @include('Admin.partials.sidebar-off')
+            @include('admin.partials.sidebar-off')
 
-            @include('Admin.partials.sidebar-on')
+            @include('admin.partials.sidebar-on')
 
             <main class="main-content-wrapper">
 

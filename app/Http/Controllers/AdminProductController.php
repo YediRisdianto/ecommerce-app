@@ -13,14 +13,14 @@ class AdminProductController extends Controller
     {
         $products = Product::with('childCategory')->get();
 
-        return view('Admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
         $childCategories = ChildCategory::all();
 
-        return view('Admin.products.add', compact('childCategories'));
+        return view('admin.products.add', compact('childCategories'));
     }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ class AdminProductController extends Controller
     {
         $childCategories = ChildCategory::all();
 
-        return view('Admin.products.edit', compact('product', 'childCategories'));
+        return view('admin.products.edit', compact('product', 'childCategories'));
     }
 
     public function update(Request $request, Product $product)

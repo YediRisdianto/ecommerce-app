@@ -47,7 +47,7 @@
     <div class="border-bottom ">
 
         @include('partials.header')
-
+        
         @include('partials.navbar')
 
     </div>

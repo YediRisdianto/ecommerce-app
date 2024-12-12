@@ -5,9 +5,9 @@ use App\Http\Controllers\AdminChildCategoryController;
 use App\Http\Controllers\AdminParentCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
-use App\Models\ChildCategory;
 use App\Models\Product;
 use App\Models\ParentCategory;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +32,12 @@ Route::get('/', function () {
     return view('welcome', compact('products', 'parentCategories'));
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/admin/dashboard', function() {
-    return view('Admin.dashboard');
+    return view('admin.dashboard');
 });
 
 Route::resource('/admin/parent-categories', AdminParentCategoryController::class);

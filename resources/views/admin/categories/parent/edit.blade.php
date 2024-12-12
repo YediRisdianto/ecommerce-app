@@ -1,4 +1,4 @@
-@extends('Admin.layouts.main')
+@extends('admin.layouts.main')
 
 @section('content')
     <!-- row -->
